@@ -5,6 +5,7 @@
       "@/*": ["./app/*"],
       "@/src/*": ["src/*"],
       "@/pages/*": ["src/pages/*"],
+      "@/global/*": ["src/global/*"],
       "@/styles/*": ["src/styles/*"],
       "@/assets/*": ["src/assets/*"],
       "@/containers/*": ["src/containers/*"],

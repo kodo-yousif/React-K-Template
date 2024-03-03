@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { Navigate, Outlet } from "react-router-dom"
 import {
   FileOutlined,
   TeamOutlined,
@@ -10,7 +10,10 @@ import {
 } from "@ant-design/icons"
 import type { MenuProps } from "antd"
 import { Avatar, Breadcrumb, Button, Layout, Menu, Popover, theme } from "antd"
-import { Outlet } from "react-router-dom"
+
+import { useUser } from "@/global/useUser"
+import { useCollapse } from "@/global/useCollapse"
+import { GlobalLoading } from "@/components/GlobalLoading"
 
 const { Header, Content, Footer, Sider } = Layout
 
@@ -46,18 +49,18 @@ const items: MenuItem[] = [
 ]
 
 export default function AppLayout() {
-  const [collapsed, setCollapsed] = useState(false)
+  const { name, setUser } = useUser()
+  const { collapse, toggleCollapse } = useCollapse()
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken()
 
+  if (!name) return <Navigate to="/login" />
   return (
     <Layout className="h-screen overflow-hidden">
-      <Sider
-        collapsible
-        collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
-      >
+      <GlobalLoading />
+      <Sider collapsible collapsed={collapse} onCollapse={toggleCollapse}>
         <div className="h-10 rounded bg-slate-400 m-4" />
         <Menu
           theme="dark"
@@ -73,13 +76,21 @@ export default function AppLayout() {
         >
           <Button
             type="text"
-            onClick={() => setCollapsed(!collapsed)}
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={toggleCollapse}
+            icon={collapse ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           />
           <Popover
             title="Welcome"
             placement="bottomRight"
-            content={<a className="text-blue-400">Logout</a>}
+            content={
+              <Button
+                type="link"
+                className="p-0"
+                onClick={() => setUser({ name: null })}
+              >
+                Logout
+              </Button>
+            }
           >
             <Avatar size={"large"} icon={<UserOutlined />} />
           </Popover>
