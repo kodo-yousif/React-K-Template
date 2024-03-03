@@ -4,8 +4,10 @@
     "paths": {
       "@/*": ["./app/*"],
       "@/src/*": ["src/*"],
+      "@/pages/*": ["src/pages/*"],
       "@/styles/*": ["src/styles/*"],
       "@/assets/*": ["src/assets/*"],
+      "@/containers/*": ["src/containers/*"],
       "@/components/*": ["src/components/*"]
     },
     "types": ["vite-plugin-svgr/client"],
