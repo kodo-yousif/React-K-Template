@@ -10,6 +10,7 @@ import {
 } from "@ant-design/icons"
 import type { MenuProps } from "antd"
 import { Avatar, Breadcrumb, Button, Layout, Menu, Popover, theme } from "antd"
+import { Outlet } from "react-router-dom"
 
 const { Header, Content, Footer, Sider } = Layout
 
@@ -95,40 +96,7 @@ export default function AppLayout() {
               borderRadius: borderRadiusLG,
             }}
           >
-            Bill is a cat.
-            <h1 className="underline">Hello your from there </h1>
-            <h1 className="underline">Hello your from there </h1>
-            <h1 className="underline">Hello your from there </h1>
-            <h1 className="underline">Hello your from there </h1>
-            <h1 className="underline">Hello your from there </h1>
-            <h1 className="underline">Hello your from there </h1>
-            <h1 className="underline">Hello your from there </h1>
-            <h1 className="underline">Hello your from there </h1>
-            <h1 className="underline">Hello your from there </h1>
-            <h1 className="underline">Hello your from there </h1>
-            <h1 className="underline">Hello your from there </h1>
-            <h1 className="underline">Hello your from there </h1>
-            <h1 className="underline">Hello your from there </h1>
-            <h1 className="underline">Hello your from there </h1>
-            <h1 className="underline">Hello your from there </h1>
-            <h1 className="underline">Hello your from there </h1>
-            <h1 className="underline">Hello your from there </h1>
-            <h1 className="my-5">Im Kodo who are you ?</h1>
-            <h1 className="my-5">Im Kodo who are you ?</h1>
-            <h1 className="my-5">Im Kodo who are you ?</h1>
-            <h1 className="my-5">Im Kodo who are you ?</h1>
-            <h1 className="my-5">Im Kodo who are you ?</h1>
-            <h1 className="my-5">Im Kodo who are you ?</h1>
-            <h1 className="my-5">Im Kodo who are you ?</h1>
-            <h1 className="my-5">Im Kodo who are you ?</h1>
-            <h1 className="my-5">Im Kodo who are you ?</h1>
-            <h1 className="my-5">Im Kodo who are you ?</h1>
-            <h1 className="my-5">Im Kodo who are you ?</h1>
-            <h1 className="my-5">Im Kodo who are you ?</h1>
-            <h1 className="my-5">Im Kodo who are you ?</h1>
-            <h1 className="my-5">Im Kodo who are you ?</h1>
-            <h1 className="my-5">Im Kodo who are you ?</h1>
-            <h1 className="my-5">Im Kodo who are you ?</h1>
+            <Outlet />
           </div>
         </Content>
         <Footer className="text-center">
