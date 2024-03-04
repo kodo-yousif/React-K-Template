@@ -1,6 +1,8 @@
 import { Navigate } from "react-router-dom"
 import { Button, Card, Checkbox, Form, Input } from "antd"
 
+import PageTitle from "@/components/PageTitle"
+
 import { GlobalLoading } from "@/components/GlobalLoading"
 
 import Kilwa from "@/assets/71QlZuD0h2L._AC_SX466_.jpg"
@@ -48,6 +50,7 @@ export default function Login() {
   if (name) return <Navigate to="/" />
   return (
     <div className="flex !h-screen !w-screen gap-8 justify-center items-center bg-blue-500">
+      <PageTitle title="Login" />
       <GlobalLoading />
       <Card className="shadow" title="Welcome to ultimate template">
         <Form
