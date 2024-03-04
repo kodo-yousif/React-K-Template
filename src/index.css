@@ -4,3 +4,8 @@
 body {
   @apply p-0 m-0;
 }
+
+* {
+  font-family: "Rubik", sans-serif !important;
+  font-optical-sizing: auto !important;
+}
