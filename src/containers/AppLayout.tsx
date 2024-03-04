@@ -1,56 +1,24 @@
-import { Navigate, Outlet } from "react-router-dom"
+import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom"
 import {
-  FileOutlined,
-  TeamOutlined,
   UserOutlined,
-  DesktopOutlined,
-  PieChartOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from "@ant-design/icons"
-import type { MenuProps } from "antd"
 import { Avatar, Breadcrumb, Button, Layout, Menu, Popover, theme } from "antd"
 
 import { useUser } from "@/global/useUser"
 import { useCollapse } from "@/global/useCollapse"
 import { GlobalLoading } from "@/components/GlobalLoading"
+import menuItems from "./MenuItems"
 
 const { Header, Content, Footer, Sider } = Layout
-
-type MenuItem = Required<MenuProps>["items"][number]
-
-function getItem(
-  label: React.ReactNode,
-  key: React.Key,
-  icon?: React.ReactNode,
-  children?: MenuItem[]
-): MenuItem {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  } as MenuItem
-}
-
-const items: MenuItem[] = [
-  getItem("Option 1", "1", <PieChartOutlined />),
-  getItem("Option 2", "2", <DesktopOutlined />),
-  getItem("User", "sub1", <UserOutlined />, [
-    getItem("Tom", "3"),
-    getItem("Bill", "4"),
-    getItem("Alex", "5"),
-  ]),
-  getItem("Team", "sub2", <TeamOutlined />, [
-    getItem("Team 1", "6"),
-    getItem("Team 2", "8"),
-  ]),
-  getItem("Files", "9", <FileOutlined />),
-]
 
 export default function AppLayout() {
   const { name, setUser } = useUser()
   const { collapse, toggleCollapse } = useCollapse()
+
+  const { pathname } = useLocation()
+  const navigate = useNavigate()
 
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -65,8 +33,9 @@ export default function AppLayout() {
         <Menu
           theme="dark"
           mode="inline"
-          items={items}
-          defaultSelectedKeys={["1"]}
+          items={menuItems}
+          selectedKeys={[pathname]}
+          onClick={({ key }) => navigate(key)}
         />
       </Sider>
       <Layout>
@@ -96,10 +65,10 @@ export default function AppLayout() {
           </Popover>
         </Header>
         <Content className="mx-4 flex flex-col">
-          <Breadcrumb className="my-4">
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
+          <Breadcrumb
+            className="my-4"
+            items={[{ title: "User" }, { title: "Bill" }]}
+          />
           <div
             className="p-6 overflow-auto "
             style={{
