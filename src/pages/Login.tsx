@@ -52,12 +52,15 @@ export default function Login() {
     <div className="flex !h-screen !w-screen gap-8 justify-center items-center bg-blue-500">
       <PageTitle title="Login" />
       <GlobalLoading />
-      <Card className="shadow" title="Welcome to ultimate template">
+      <Card
+        className="shadow w-[calc(100vw-32px)] lg:w-[500px]"
+        title="Welcome to ultimate template"
+      >
         <Form
-          disabled={loading}
           layout="vertical"
+          disabled={loading}
+          className="w-full"
           onFinish={onFinish}
-          className="w-[500px]"
           initialValues={{ remember: true }}
         >
           <Form.Item<FieldType>
@@ -87,7 +90,10 @@ export default function Login() {
           </Form.Item>
         </Form>
       </Card>
-      <img src={Kilwa} className="w-auto h-auto shadow rounded max-h-[389px]" />
+      <img
+        src={Kilwa}
+        className="w-auto hidden lg:block h-auto shadow rounded-xl max-h-[389px]"
+      />
     </div>
   )
 }

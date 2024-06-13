@@ -24,6 +24,7 @@ function getItem(
 
 const menuItems: MenuItem[] = [
   getItem("Home", "/", <HomeFilled />),
+  getItem("Hello", "/hello", <WindowsFilled />),
   getItem("Page 1", "/page1", <WindowsFilled />),
   getItem("Page 2", "/page2", <AppleFilled />),
   getItem("List", "sub1", <DatabaseFilled />, [

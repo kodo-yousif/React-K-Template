@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { Route, createRoutesFromChildren } from "react-router-dom"
 
 import { lazyPageBuilder } from "./lib/route"
@@ -9,12 +10,14 @@ import AppLayout from "./containers/AppLayout"
 const Home = lazyPageBuilder(() => import("@/pages/Home"))
 const Page1 = lazyPageBuilder(() => import("@/pages/Page1"))
 const Page2 = lazyPageBuilder(() => import("@/pages/Page2"))
+const Hello = lazyPageBuilder(() => import("@/pages/Hello"))
 const NotFound = lazyPageBuilder(() => import("@/pages/NotFound"))
 
 const routes = createRoutesFromChildren(
   <Route id="root" ErrorBoundary={Error}>
     <Route path="/" Component={AppLayout}>
       <Route index lazy={Home} />
+      <Route path="/hello" lazy={Hello} />
       <Route path="/page1" lazy={Page1} />
       <Route path="/page2" lazy={Page2} />
     </Route>
