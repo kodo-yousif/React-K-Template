@@ -1,11 +1,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "speda";
+  src: url("/src/assets/fonts/Speda.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url("/src/assets/fonts/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "speda-bold";
+  src: url("/src/assets/fonts/Speda-Bold.ttf") format("truetype");
+}
+
 body {
   @apply p-0 m-0;
 }
 
 * {
-  font-family: "Rubik", sans-serif !important;
+  font-family: "roboto", "speda", sans-serif !important;
   font-optical-sizing: auto !important;
 }

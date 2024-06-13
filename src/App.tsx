@@ -1,9 +1,19 @@
+import { ConfigProvider } from "antd"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 
 import routes from "./routes"
+import { useTranslation } from "react-i18next"
 
 export default function App() {
   const router = createBrowserRouter(routes)
 
-  return <RouterProvider router={router} />
+  const { t } = useTranslation()
+
+  const i18Dir: "rtl" | "ltr" = t("dir")
+
+  return (
+    <ConfigProvider direction={i18Dir || "ltr"}>
+      <RouterProvider router={router} />
+    </ConfigProvider>
+  )
 }

@@ -1,30 +1,66 @@
+import { useTranslation } from "react-i18next"
 import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom"
+
 import {
   UserOutlined,
+  GlobalOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from "@ant-design/icons"
-import { Avatar, Breadcrumb, Button, Layout, Menu, Popover, theme } from "antd"
+
+import {
+  Menu,
+  theme,
+  Button,
+  Avatar,
+  Layout,
+  Popover,
+  Dropdown,
+  MenuProps,
+  Breadcrumb,
+} from "antd"
+
+import menuItems from "./MenuItems"
 
 import { useUser } from "@/global/useUser"
 import { useCollapse } from "@/global/useCollapse"
 import { GlobalLoading } from "@/components/GlobalLoading"
-import menuItems from "./MenuItems"
 
 const { Header, Content, Footer, Sider } = Layout
+
+const items: MenuProps["items"] = [
+  {
+    key: "en",
+    label: "English",
+  },
+  {
+    key: "ckb",
+    label: "کوردی",
+  },
+  {
+    key: "ar",
+    label: "العربية",
+  },
+]
 
 export default function AppLayout() {
   const { name, setUser } = useUser()
   const { collapse, toggleCollapse } = useCollapse()
 
+  const {
+    t,
+    i18n: { changeLanguage },
+  } = useTranslation()
+
   const { pathname } = useLocation()
   const navigate = useNavigate()
 
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: { colorBgContainer, borderRadiusLG, colorPrimary },
   } = theme.useToken()
 
   if (!name) return <Navigate to="/login" />
+
   return (
     <Layout className="h-screen overflow-hidden">
       <GlobalLoading />
@@ -48,21 +84,39 @@ export default function AppLayout() {
             onClick={toggleCollapse}
             icon={collapse ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           />
-          <Popover
-            title="Welcome"
-            placement="bottomRight"
-            content={
-              <Button
-                type="link"
-                className="p-0"
-                onClick={() => setUser({ name: null })}
-              >
-                Logout
-              </Button>
-            }
-          >
-            <Avatar size={"large"} icon={<UserOutlined />} />
-          </Popover>
+          <div className="flex flex-row-reverse items-stretch gap-8">
+            <Popover
+              title={t("welcome")}
+              placement="bottomRight"
+              content={
+                <Button
+                  type="link"
+                  className="p-0"
+                  onClick={() => setUser({ name: null })}
+                >
+                  {t("logout")}
+                </Button>
+              }
+            >
+              <Avatar size={"large"} icon={<UserOutlined />} />
+            </Popover>
+            <Dropdown
+              arrow
+              destroyPopupOnHide
+              placement="bottom"
+              menu={{
+                items,
+                selectable: true,
+                selectedKeys: [t("name")],
+                onSelect: ({ key }) => changeLanguage(key),
+              }}
+              overlayClassName="[&_ul]:flex text-center [&_ul]:flex-col [&_ul]:gap-1"
+            >
+              <div className="text-xl flex items-center cursor-pointer">
+                <GlobalOutlined style={{ color: colorPrimary }} className="" />
+              </div>
+            </Dropdown>
+          </div>
         </Header>
         <Content className="mx-4 flex flex-col">
           <Breadcrumb
