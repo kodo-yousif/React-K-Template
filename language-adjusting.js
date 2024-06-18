@@ -20,6 +20,13 @@ const deletingFields = []
 
 // deletingFields.push("")
 
+// addingFields.push({
+//   key: "",
+//   en: "",
+//   ckb: "",
+//   ar: "",
+// })
+
 addingFields.forEach(({ key, ...languages }) => {
   Object.entries(languages).forEach(([lang, value]) => {
     const json = readJsonFile(lang)
