@@ -18,14 +18,7 @@ const writeJsonFile = (fileName, data) => {
 const addingFields = []
 const deletingFields = []
 
-// deletingFields.push("kodo")
-
-// addingFields.push({
-//   key: "kodo",
-//   en: "kodo",
-//   ckb: "kodo",
-//   ar: "kodo",
-// })
+// deletingFields.push("")
 
 addingFields.forEach(({ key, ...languages }) => {
   Object.entries(languages).forEach(([lang, value]) => {

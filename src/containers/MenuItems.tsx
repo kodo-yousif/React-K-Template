@@ -17,18 +17,19 @@ function getItem(
   return {
     key,
     icon,
-    children,
     label,
+    children,
+    i18n: label,
   } as MenuItem
 }
 
 const menuItems: MenuItem[] = [
-  getItem("Home", "/", <HomeFilled />),
-  getItem("Hello", "/hello", <WindowsFilled />),
-  getItem("Page 1", "/page1", <WindowsFilled />),
-  getItem("List", "sub1", <DatabaseFilled />, [
+  getItem("home", "/", <HomeFilled />),
+  getItem("hello", "/hello", <WindowsFilled />),
+  getItem("page 1", "/page1", <WindowsFilled />),
+  getItem("list", "sub1", <DatabaseFilled />, [
     getItem("404", "/kodo"),
-    getItem("Page 2", "/page2", <AppleFilled />),
+    getItem("page 2", "/page2", <AppleFilled />),
   ]),
 ]
 

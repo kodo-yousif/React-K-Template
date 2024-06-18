@@ -23,4 +23,5 @@ body {
 * {
   font-family: "roboto", "speda", sans-serif !important;
   font-optical-sizing: auto !important;
+  user-select: none;
 }

@@ -14,8 +14,6 @@ export default function App() {
 
   const i18Dir: "rtl" | "ltr" = t("dir")
 
-  console.log(theme)
-
   return (
     <ConfigProvider
       theme={{

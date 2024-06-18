@@ -2,5 +2,11 @@
   "name": "en",
   "dir": "ltr",
   "logout": "Logout",
-  "welcome": "Welcome"
+  "welcome": "Welcome",
+  "home": "Home",
+  "hello": "Hello",
+  "page 1": "Page 1",
+  "list": "List",
+  "page 2": "Page 2",
+  "copy-right": "Template prepared by Kodo Yousif"
 }

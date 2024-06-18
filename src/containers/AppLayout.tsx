@@ -27,6 +27,8 @@ import { useUser } from "@/global/useUser"
 import { useCollapse } from "@/global/useCollapse"
 import { useDarkMode } from "@/global/useDarkMode"
 import { GlobalLoading } from "@/components/GlobalLoading"
+import { useMemo } from "react"
+import i18n from "i18next"
 
 const { Header, Content, Footer, Sider } = Layout
 
@@ -55,6 +57,24 @@ export default function AppLayout() {
     i18n: { changeLanguage },
   } = useTranslation()
 
+  const translatedMenu = useMemo(() => {
+    return menuItems.map((item: Required<MenuProps>["items"][number]) => {
+      // @ts-ignore
+      item.label = t(item.i18n)
+      // @ts-ignore
+
+      if (item?.children) {
+        // @ts-ignore
+        item.children.map((subItem: Required<MenuProps>["items"][number]) => {
+          // @ts-ignore
+          subItem.label = t(subItem.i18n)
+        })
+      }
+
+      return item
+    })
+  }, [t("name")])
+
   const { pathname } = useLocation()
   const navigate = useNavigate()
 
@@ -72,7 +92,7 @@ export default function AppLayout() {
         <Menu
           theme="dark"
           mode="inline"
-          items={menuItems}
+          items={translatedMenu}
           selectedKeys={[pathname]}
           onClick={({ key }) => navigate(key)}
         />
@@ -145,7 +165,9 @@ export default function AppLayout() {
           </div>
         </Content>
         <Footer className="text-center">
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
+          {"©" + new Date().getFullYear()}
+          <span className="inline-block w-10" />
+          {t("copy-right")}
         </Footer>
       </Layout>
     </Layout>
