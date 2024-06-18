@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next"
+import { DarkModeSwitch } from "react-toggle-dark-mode"
 import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom"
 
 import {
@@ -24,6 +25,7 @@ import menuItems from "./MenuItems"
 
 import { useUser } from "@/global/useUser"
 import { useCollapse } from "@/global/useCollapse"
+import { useDarkMode } from "@/global/useDarkMode"
 import { GlobalLoading } from "@/components/GlobalLoading"
 
 const { Header, Content, Footer, Sider } = Layout
@@ -45,6 +47,7 @@ const items: MenuProps["items"] = [
 
 export default function AppLayout() {
   const { name, setUser } = useUser()
+  const { isDark, toggleTheme } = useDarkMode()
   const { collapse, toggleCollapse } = useCollapse()
 
   const {
@@ -84,7 +87,7 @@ export default function AppLayout() {
             onClick={toggleCollapse}
             icon={collapse ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           />
-          <div className="flex flex-row-reverse items-stretch gap-8">
+          <div className="flex flex-row-reverse items-center gap-8">
             <Popover
               title={t("welcome")}
               placement="bottomRight"
@@ -116,6 +119,14 @@ export default function AppLayout() {
                 <GlobalOutlined style={{ color: colorPrimary }} className="" />
               </div>
             </Dropdown>
+
+            <DarkModeSwitch
+              size={25}
+              checked={!isDark}
+              onChange={toggleTheme}
+              sunColor={colorPrimary}
+              moonColor={colorPrimary}
+            />
           </div>
         </Header>
         <Content className="mx-4 flex flex-col">
