@@ -1,4 +1,4 @@
-import { ConfigProvider } from "antd"
+import { ConfigProvider, theme } from "antd"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 
 import routes from "./routes"
@@ -12,7 +12,10 @@ export default function App() {
   const i18Dir: "rtl" | "ltr" = t("dir")
 
   return (
-    <ConfigProvider direction={i18Dir || "ltr"}>
+    <ConfigProvider
+      theme={{ algorithm: theme.darkAlgorithm }}
+      direction={i18Dir || "ltr"}
+    >
       <RouterProvider router={router} />
     </ConfigProvider>
   )
