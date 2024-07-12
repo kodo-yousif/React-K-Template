@@ -28,7 +28,6 @@ import { useCollapse } from "@/global/useCollapse"
 import { useDarkMode } from "@/global/useDarkMode"
 import { GlobalLoading } from "@/components/GlobalLoading"
 import { useMemo } from "react"
-import i18n from "i18next"
 
 const { Header, Content, Footer, Sider } = Layout
 
